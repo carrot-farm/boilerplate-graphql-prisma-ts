@@ -19,9 +19,8 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  linkWhereUniqueInput: { // input type
-    id?: number | null; // Int
-    userId?: number | null; // Int
+  userCreateInput: { // input type
+    name: string; // String!
   }
 }
 
@@ -29,18 +28,11 @@ export interface NexusGenEnums {
 }
 
 export interface NexusGenRootTypes {
+  Mutation: {};
   Query: {};
-  link: { // root type
-    description: string; // String!
-    id: number; // Int!
-    url: string; // String!
-    userId?: number | null; // Int
-  }
   user: { // root type
-    email: string; // String!
     id: number; // Int!
     name: string; // String!
-    password: string; // String!
   }
   String: string;
   Int: number;
@@ -50,36 +42,27 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
-  linkWhereUniqueInput: NexusGenInputs['linkWhereUniqueInput'];
+  userCreateInput: NexusGenInputs['userCreateInput'];
 }
 
 export interface NexusGenFieldTypes {
+  Mutation: { // field return type
+    createOneuser: NexusGenRootTypes['user']; // user!
+  }
   Query: { // field return type
     info: string; // String!
-  }
-  link: { // field return type
-    description: string; // String!
-    id: number; // Int!
-    url: string; // String!
-    userId: number | null; // Int
+    users: NexusGenRootTypes['user'][]; // [user!]!
   }
   user: { // field return type
-    email: string; // String!
     id: number; // Int!
-    link: NexusGenRootTypes['link'][]; // [link!]!
     name: string; // String!
-    password: string; // String!
   }
 }
 
 export interface NexusGenArgTypes {
-  user: {
-    link: { // args
-      after?: NexusGenInputs['linkWhereUniqueInput'] | null; // linkWhereUniqueInput
-      before?: NexusGenInputs['linkWhereUniqueInput'] | null; // linkWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-      skip?: number | null; // Int
+  Mutation: {
+    createOneuser: { // args
+      data: NexusGenInputs['userCreateInput']; // userCreateInput!
     }
   }
 }
@@ -89,9 +72,9 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Query" | "link" | "user";
+export type NexusGenObjectNames = "Mutation" | "Query" | "user";
 
-export type NexusGenInputNames = "linkWhereUniqueInput";
+export type NexusGenInputNames = "userCreateInput";
 
 export type NexusGenEnumNames = never;
 

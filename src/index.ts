@@ -3,7 +3,7 @@ require('dotenv').config({
 });
 import { GraphQLServer } from 'graphql-yoga';
 import { context } from './context';
-import { schema } from './schema';
+import { schema } from './graphql';
 
 // ==== 환경변수
 const { PORT: port } = process.env;
